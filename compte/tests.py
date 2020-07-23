@@ -115,7 +115,7 @@ class AccountTestCase(LiveServerTestCase):
 	def test_editcompte(self):
 		selenium = self.selenium
 		#Opening the link we want to test
-		selenium.get('http://35.180.208.255:8000/auth_app/log_in/')
+		selenium.get('http://35.180.208.255/auth_app/log_in/')
 		#find the form element
 		username = selenium.find_element_by_id('id_log_id')
 		password = selenium.find_element_by_id('id_pwd')
@@ -133,7 +133,7 @@ class AccountTestCase(LiveServerTestCase):
 		#check the returned result
 		self.assertEqual(selenium.find_element_by_css_selector("h1#info_login").get_attribute("innerHTML").splitlines()[0],name_index)
 
-		selenium.get('http://35.180.208.255:8000/compte/get_compte/TestSelenium/edit/')
+		selenium.get('http://35.180.208.255/compte/get_compte/TestSelenium/edit/')
 
 		first_name = selenium.find_element_by_id('id_first_name')
 		last_name = selenium.find_element_by_id('id_last_name')
