@@ -73,7 +73,7 @@ class AccountTestCase(LiveServerTestCase):
 		''' Mise en place des paramètres
 		Setting parameters '''
 		self.selenium = webdriver.Firefox(
-			executable_path='..\\webdriver\\geckodriver.exe')
+			executable_path='.\\webdriver\\geckodriver.exe')
 		super(AccountTestCase, self).setUp()
 
 	def tearDown(self):
