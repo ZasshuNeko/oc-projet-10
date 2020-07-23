@@ -1,12 +1,14 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 import unittest
+import os
 from django.contrib.auth.models import User
 
 from django.test import LiveServerTestCase
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.by import By
 
 
@@ -72,8 +74,26 @@ class AccountTestCase(LiveServerTestCase):
 	def setUp(self):
 		''' Mise en place des paramètres
 		Setting parameters '''
-		self.selenium = webdriver.Firefox(
-			executable_path='webdriver/geckodriver.exe')
+                browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
+                BROWSERSTACK_URL = 'https://nicolasmazaleyra1:tt8A68XfsXBeJxgMrpB5@hub-cloud.browserstack.com/wd/hub'
+
+                desired_cap = {
+                    'browserstack.local': 'true',
+                    'browserstack.localIdentifier': browserstack_local_identifier,
+                    'os' : 'Windows',
+                    'os_version' : '10',
+                    'browser' : 'Chrome',
+                    'browser_version' : '80',
+                    'name' : "nicolasmazaleyra1's First Test"
+
+                }
+
+                self.selenium = webdriver.Remote(
+                    command_executor=BROWSERSTACK_URL,
+                    desired_capabilities=desired_cap
+                )
+		#self.selenium = webdriver.Firefox(
+			#executable_path='webdriver/geckodriver.exe')
 		super(AccountTestCase, self).setUp()
 
 	def tearDown(self):
@@ -85,7 +105,7 @@ class AccountTestCase(LiveServerTestCase):
 		Call up the registration page '''
 		selenium = self.selenium
 		# Opening the link we want to test
-		selenium.get('http://127.0.0.1:8000/auth_app/signe_it/')
+		selenium.get('http://35.180.208.255/auth_app/signe_it/')
 		# find the form element
 		username = selenium.find_element_by_id('id_username')
 		email = selenium.find_element_by_id('id_email')
@@ -102,7 +122,7 @@ class AccountTestCase(LiveServerTestCase):
 
 		# submitting the form
 		submit.send_keys(Keys.RETURN)
-		selenium.implicitly_wait(10)
+		selenium.implicitly_wait(20)
 
 		# check the returned result
 		self.assertEqual(selenium.find_element_by_css_selector("p#information").get_attribute(
@@ -113,7 +133,7 @@ class AccountTestCase(LiveServerTestCase):
 		Connection test '''
 		selenium = self.selenium
 		# Opening the link we want to test
-		selenium.get('http://127.0.0.1:8000/auth_app/log_in/')
+		selenium.get('http://35.180.208.255/auth_app/log_in/')
 		# find the form element
 		username = selenium.find_element_by_id('id_log_id')
 		password = selenium.find_element_by_id('id_pwd')
@@ -126,7 +146,7 @@ class AccountTestCase(LiveServerTestCase):
 
 		# submitting the form
 		submit.send_keys(Keys.RETURN)
-		selenium.implicitly_wait(10)
+		selenium.implicitly_wait(20)
 		name_index = "Bonjour TestSelenium"
 		# check the returned result
 		self.assertEqual(selenium.find_element_by_css_selector(
