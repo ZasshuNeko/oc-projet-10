@@ -86,12 +86,12 @@ class TestApp(TestCase):
 class AccountTestCase(LiveServerTestCase):
 
 	def setUp(self):
-               # browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
+                browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
                 BROWSERSTACK_URL = 'https://nicolasmazaleyra1:tt8A68XfsXBeJxgMrpB5@hub-cloud.browserstack.com/wd/hub'
 
                 desired_cap = {
                     'browserstack.local': 'true',
-                   # 'browserstack.localIdentifier': browserstack_local_identifier,
+                    'browserstack.localIdentifier': browserstack_local_identifier,
                     'os' : 'Windows',
                     'os_version' : '10',
                     'browser' : 'Chrome',
