@@ -149,8 +149,8 @@ class AccountTestCase(LiveServerTestCase):
 		submit.send_keys(Keys.RETURN)
 		selenium.implicitly_wait(20)
 
-		first_name = selenium.find_element_by_id('id_first_name')
-		last_name = selenium.find_element_by_id('id_last_name')
+		first_name = selenium.find_element_by_id('first')
+		last_name = selenium.find_element_by_id('last')
 
 		print(selenium.find_element_by_id("first").get_attribute("value"))
 
