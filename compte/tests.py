@@ -147,7 +147,7 @@ class AccountTestCase(LiveServerTestCase):
 		submit = selenium.find_element_by_name('edit_compte')
 
 		submit.send_keys(Keys.RETURN)
-		selenium.implicitly_wait(10)
+		selenium.implicitly_wait(20)
 
 		first_name = selenium.find_element_by_id('id_first_name')
 		last_name = selenium.find_element_by_id('id_last_name')
