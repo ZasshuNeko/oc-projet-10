@@ -91,9 +91,7 @@ class AccountTestCase(LiveServerTestCase):
                 command_executor=BROWSERSTACK_URL,
                 desired_capabilities=desired_cap
             )
-		#self.selenium = webdriver.Firefox(
-			#executable_path='webdriver/geckodriver.exe')
-	    super(AccountTestCase, self).setUp()
+            super(AccountTestCase, self).setUp()
 
 	def tearDown(self):
 
