@@ -73,7 +73,7 @@ class AccountTestCase(LiveServerTestCase):
 
 	def setUp(self):
 		''' Mise en place des paramètres
-		Setting parameters '''
+		Setting parameters browser stack '''
                 browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
                 BROWSERSTACK_URL = 'https://nicolasmazaleyra1:tt8A68XfsXBeJxgMrpB5@hub-cloud.browserstack.com/wd/hub'
 
