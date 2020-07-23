@@ -9,10 +9,10 @@ branches:
 before_script:
         - pip install -r requirements.txt
 
-env: DJANGO_SETTINGS_MODULE="OCprojetHuit.settings.travis"
-
 services:
         - postgresql
+
+env: DJANGO_SETTINGS_MODULE="OCprojetHuit.settings.travis"
 
 script:
         - ./manage.py test
