@@ -74,18 +74,36 @@ class TestApp(TestCase):
 		default_data = {"last_name":"TestDjango","first_name":"TestDjangoFirst","email":"Test@test.test"}
 
 		test_edit = self.client.post('/compte/get_compte/' + str(response.context['user']) +  '/valide/',default_data)
-		self.assertEqual(test_edit.status_code, 200)
+		self.assertEqual(test_edit.status_code,302 )
 		self.assertTemplateUsed(test_edit, 'compte.html')
 
 		test_edit = self.client.get('/compte/get_compte/' + str(response.context['user']) +  '/')
-		self.assertEqual(test_edit.status_code,302 )
+		self.assertEqual(test_edit.status_code,200)
 		self.assertEqual(str(test_edit.context['data']['name']),"TestDjangoFirst TestDjango" )
 
 
 class AccountTestCase(LiveServerTestCase):
 
 	def setUp(self):
-		self.selenium = webdriver.Firefox(executable_path='webdriver/geckodriver.exe')
+                browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
+                BROWSERSTACK_URL = 'https://nicolasmazaleyra1:tt8A68XfsXBeJxgMrpB5@hub-cloud.browserstack.com/wd/hub'
+
+                desired_cap = {
+                    'browserstack.local': 'true',
+                    'browserstack.localIdentifier': browserstack_local_identifier,
+                    'os' : 'Windows',
+                    'os_version' : '10',
+                    'browser' : 'Chrome',
+                    'browser_version' : '80',
+                    'name' : "nicolasmazaleyra1's First Test"
+
+                }
+
+                self.selenium = webdriver.Remote(
+                    command_executor=BROWSERSTACK_URL,
+                    desired_capabilities=desired_cap
+                )
+		#self.selenium = webdriver.Firefox(executable_path='webdriver/geckodriver.exe')
 		super(AccountTestCase, self).setUp()
 
 	def tearDown(self):

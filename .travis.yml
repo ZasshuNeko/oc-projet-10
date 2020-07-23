@@ -16,3 +16,8 @@ env: DJANGO_SETTINGS_MODULE="OCprojetHuit.settings.travis"
 
 script:
         - python ./manage.py test
+
+addons:
+  browserstack:
+    username: "nicolasmazaleyra1"
+    access_key: "tt8A68XfsXBeJxgMrpB5"
