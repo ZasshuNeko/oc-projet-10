@@ -72,35 +72,36 @@ class AccountTestCase(LiveServerTestCase):
 	''' Test Selenium '''
 
 	def setUp(self):
-		''' Mise en place des paramètres
-		Setting parameters BROWSER '''
-                browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
-                BROWSERSTACK_URL = 'https://nicolasmazaleyra1:tt8A68XfsXBeJxgMrpB5@hub-cloud.browserstack.com/wd/hub'
+            ''' Mise en place des paramètres
+            Setting parameters BROWSER '''
+            browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
+            BROWSERSTACK_URL = 'https://nicolasmazaleyra1:tt8A68XfsXBeJxgMrpB5@hub-cloud.browserstack.com/wd/hub'
 
-                desired_cap = {
-                    'browserstack.local': 'true',
-                    'browserstack.localIdentifier': browserstack_local_identifier,
-                    'os' : 'Windows',
-                    'os_version' : '10',
-                    'browser' : 'Chrome',
-                    'browser_version' : '80',
-                    'name' : "nicolasmazaleyra1's First Test"
+            desired_cap = {
+                'browserstack.local': 'true',
+                'browserstack.localIdentifier': browserstack_local_identifier,
+                'os' : 'Windows',
+                'os_version' : '10',
+                'browser' : 'Chrome',
+                'browser_version' : '80',
+                'name' : "nicolasmazaleyra1's First Test"
+            }
 
-                }
-
-                self.selenium = webdriver.Remote(
-                    command_executor=BROWSERSTACK_URL,
-                    desired_capabilities=desired_cap
-                )
+            self.selenium = webdriver.Remote(
+                command_executor=BROWSERSTACK_URL,
+                desired_capabilities=desired_cap
+            )
 		#self.selenium = webdriver.Firefox(
 			#executable_path='webdriver/geckodriver.exe')
-		super(AccountTestCase, self).setUp()
+	    super(AccountTestCase, self).setUp()
 
 	def tearDown(self):
+
 		self.selenium.quit()
 		super(AccountTestCase, self).tearDown()
 
 	def test_register(self):
+
 		''' Appel la page d'enregistrement
 		Call up the registration page '''
 		selenium = self.selenium
