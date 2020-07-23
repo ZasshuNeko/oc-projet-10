@@ -85,7 +85,7 @@ class TestApp(TestCase):
 class AccountTestCase(LiveServerTestCase):
 
 	def setUp(self):
-		self.selenium = webdriver.Firefox(executable_path='webdriver\\geckodriver.exe')
+		self.selenium = webdriver.Firefox(executable_path='webdriver/geckodriver.exe')
 		super(AccountTestCase, self).setUp()
 
 	def tearDown(self):
