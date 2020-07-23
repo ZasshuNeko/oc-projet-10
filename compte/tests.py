@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 import unittest
+import os
 from polls.models import Produits, Favoris
 from django.contrib.auth.models import User
 
@@ -75,7 +76,7 @@ class TestApp(TestCase):
 
 		test_edit = self.client.post('/compte/get_compte/' + str(response.context['user']) +  '/valide/',default_data)
 		self.assertEqual(test_edit.status_code,302 )
-		self.assertTemplateUsed(test_edit, 'compte.html')
+		#self.assertTemplateUsed(test_edit, 'compte.html')
 
 		test_edit = self.client.get('/compte/get_compte/' + str(response.context['user']) +  '/')
 		self.assertEqual(test_edit.status_code,200)
