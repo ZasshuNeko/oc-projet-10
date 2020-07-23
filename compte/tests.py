@@ -78,7 +78,7 @@ class TestApp(TestCase):
 		self.assertTemplateUsed(test_edit, 'compte.html')
 
 		test_edit = self.client.get('/compte/get_compte/' + str(response.context['user']) +  '/')
-		self.assertEqual(test_edit.status_code, 200)
+		self.assertEqual(test_edit.status_code,302 )
 		self.assertEqual(str(test_edit.context['data']['name']),"TestDjangoFirst TestDjango" )
 
 
